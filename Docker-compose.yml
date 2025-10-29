@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    container_name: expense-backend
+    env_file:
+      - ./backend/.env # loads environment variables at runtime
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo_local # optional local MongoDB
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: expense-frontend
+    env_file:
+      - ./frontend/.env
+    ports:
+      - "5173:5173"
+    restart: unless-stopped
+
+  # Optional local MongoDB (for dev only)
+  mongo_local:
+    image: mongo:7
+    container_name: expense-mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: expense_tracker
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

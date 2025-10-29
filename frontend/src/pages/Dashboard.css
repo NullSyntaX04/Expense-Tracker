@@ -1,0 +1,94 @@
+.dashboard-container {
+  min-height: 100vh;
+  padding: 30px;
+  background: linear-gradient(
+    135deg,
+    #6a11cb,
+    #2575fc
+  ); /* Gradient background */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Overlay for subtle blur effect */
+.dashboard-container::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: -1;
+}
+
+/* Header */
+.dashboard-title {
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: #ff9800;
+  border: none;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #e68900;
+}
+
+.btn-outline-danger {
+  border-radius: 6px;
+  border: 1px solid #ff4d4f;
+  color: #ff4d4f;
+}
+
+.btn-outline-danger:hover {
+  background-color: #ff4d4f;
+  color: #fff;
+}
+
+/* Cards - glass effect */
+.summary-card,
+.chart-card,
+.table-card {
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  padding: 25px;
+  color: #fff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.summary-card:hover,
+.chart-card:hover,
+.table-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Card headers */
+.card h5 {
+  font-weight: 600;
+}
+
+/* Chart & Table spacing */
+.chart-card,
+.table-card {
+  margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .row.g-4 {
+    flex-direction: column;
+  }
+  .col-md-4,
+  .col-md-8 {
+    width: 100%;
+  }
+}
